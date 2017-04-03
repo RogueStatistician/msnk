@@ -1,3 +1,4 @@
+#' @export
 `%s%` <- function(A,B) {
   if(typeof(A)!='matrix') A<-as.matrix(A)
   if(typeof(B)!='matrix') B<-as.matrix(B)
