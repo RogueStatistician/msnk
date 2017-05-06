@@ -1,13 +1,7 @@
-mori.rohatgi.szekeley <- function(Omega,xi,delta){
+#' @export
+mori.rohatgi.szekeley <- function(Omega,xi,alpha){
   p<- nrow(Omega)
   Ip<- diag(p)
-  K<-Ip%s%(
-    Omega%x%xi%x%t(xi)+
-    xi%x%Omega%x%t(xi)+
-    c(Omega)%X%t(xi)%x%t(xi)+
-    xi%x%t(xi)%x%xi%x%t(xi)+
-    Omega%x%Omega+
-    c(Omega)%*%t(c(Omega))+
-
-    )
+  K<-Ip%s%M4(Omega,xi,alpha)-(p+2)*diag(p)
+  return(K)
 }
