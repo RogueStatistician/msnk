@@ -1,7 +1,6 @@
 #' @export
-kollo <- function(Omega,xi,alpha){
+srivastava <- function(Omega,xi=rep(0,length(alpha)),alpha){
   p <- nrow(Omega)
-  Ip<- matrix(rep(1,p^2),p,p)
   m <- M4(Omega,xi,alpha)
   dec <- eigen(Omega)
   E<- apply(
@@ -9,6 +8,6 @@ kollo <- function(Omega,xi,alpha){
   FUN = function(gamma){
     (t(gamma)%x%t(gamma))%*%m%*%(gamma%x%gamma)
   },
-  MARGIN = 2)
+  MARGIN =  2)
   return(1/p*sum(E/dec$values^2))
 }

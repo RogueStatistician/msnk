@@ -1,4 +1,4 @@
-M4 <- function(Omega,xi,alpha){
+M4 <- function(Omega,xi=rep(0,length(alpha)),alpha){
   delta <- c((Omega%*%alpha)/sqrt(1+t(alpha)%*%Omega%*%alpha)[1,1])
   p <- nrow(Omega)
   return(
