@@ -35,7 +35,7 @@ directional <- function(Omega,xi=rep(0,length(alpha)),alpha,K=0){
       }
 
     }
-    T[i]<-T[i]-J2*K
+    T[i]<-T[i]-J2*K+(6-9*p+3*p^2)/(p*(p+2)*(p+4))
   }
   return(list("T"=T,"Q"=t(T)%*%solve(O)%*%T))
 }
