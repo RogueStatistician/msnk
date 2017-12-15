@@ -1,6 +1,7 @@
 #' @export
 srivastava <- function(Omega,xi=rep(0,length(alpha)),alpha){
   p <- nrow(Omega)
+  O <- cov2cor(Omega)
   delta <- O%*%alpha%*%(1+t(alpha)%*%O%*%alpha)^(-1/2)
   xi <- xi+sqrt(2/pi)*delta
   m <- M4(O,-xi,alpha)

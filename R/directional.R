@@ -37,5 +37,8 @@ directional <- function(Omega,xi=rep(0,length(alpha)),alpha,K=0){
     }
     T[i]<-T[i]-J2*K
   }
-  return(T)
+  return(list("T"=T,"Q"=t(T)%*%solve(O)%*%T))
 }
+
+# Indice scalare t(Tn)%*%solve(O)%*%Tn
+# Plot3d per i countour 3d se non trovo altro
