@@ -1,5 +1,7 @@
 #' @export
-directional <- function(Omega,xi=rep(0,length(alpha)),alpha,K=0){
+#' @importFrom stats cov2cor
+#' @importFrom stats var
+directional <- function(Omega,xi=rep(0,length(alpha)),alpha){
   p <- NROW(Omega)
   O<-cov2cor(Omega)
   delta <- O%*%alpha%*%(1+t(alpha)%*%O%*%alpha)^(-1/2)
@@ -7,6 +9,7 @@ directional <- function(Omega,xi=rep(0,length(alpha)),alpha,K=0){
   J24 <- 3/(p*(p+2)*(p+4))
   J6 <- 15/(p*(p+2)*(p+4))
   J2 <- 1/p
+  K<-(9*(2+3*p))/((p+2)*(p+4))
   T <- rep(0,p)
   for(i in 1:p){
     T[i]<-J6*
@@ -35,7 +38,7 @@ directional <- function(Omega,xi=rep(0,length(alpha)),alpha,K=0){
       }
 
     }
-    T[i]<-T[i]-J2*K+(6-9*p+3*p^2)/(p*(p+2)*(p+4))
+    T[i]<-T[i]-J2*K
   }
   return(list("T"=T,"Q"=t(T)%*%solve(O)%*%T))
 }

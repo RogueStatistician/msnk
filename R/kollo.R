@@ -6,10 +6,10 @@ kollo <- function(Omega,xi=rep(0,length(alpha)),alpha,center=F){
   delta <- O%*%alpha%*%(1+t(alpha)%*%O%*%alpha)^(-1/2)
   xi <- xi+sqrt(2/pi)*delta
   K<-One.p%s%M4(O,-xi,alpha)
-  if(center){
-    K<-(K-2*One.p)/p
-  }
-  return(K)
+  K<-K-p*diag(p)-2*One.p
+
+  return(list(K=K,scalar=sqrt(sum(diag(K%*%t(K))))))
+
 }
 
 
